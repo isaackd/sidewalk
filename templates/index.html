@@ -48,7 +48,7 @@
 		{% if avg_steps_to_overtake and avg_steps_to_overtake > 0 %}
 
 		<challenge-info>
-			<span class="sm">You need to average <b>{{ avg_steps_to_overtake }} steps a day</b> in order to catch second place!</span>
+			<span class="sm">You need to average <b>{{ localize_number(avg_steps_to_overtake) }} steps a day</b> in order to catch second place!</span>
 		</challenge-info>
 
 		{% endif %}
