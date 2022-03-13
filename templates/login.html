@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sw</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+
+	<base href="/">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="static/form.css">
+</head>
+<body>
+
+	<span class="lg">Login</span>
+
+	{% if invalid_login %}
+	<p class="error" style="font-size: 13px; color: red">Invalid username or password.</p>
+	{% endif %}
+
+	<form action="/login" method="POST">
+		<label class="sm">
+			Username
+			<input type="text" minlength=2 name="username" required autocomplete="off">
+		</label>
+		<label class="sm">
+			Password
+			<input type="password" minlength=8 name="password" required>
+		</label>
+		<button>Login</button>
+	</form>
+
+	<p>Don't have an account yet? <a href="/signup">Sign up</a>!</p>
+
+</body>
+</html>

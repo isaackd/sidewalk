@@ -1,0 +1,149 @@
+* {
+	box-sizing: border-box !important;
+}
+
+body {
+	position: absolute;
+
+	width: 100%;
+
+	left: 0;
+	top: 0;
+
+	padding: 30px 0;
+	margin: 0;
+
+
+	font-family: "Open Sans", sans-serif;
+}
+
+.lg {
+	font-size: 2rem;
+}
+
+.md {
+	font-size: 1.3rem;
+}
+
+.sm {
+	font-size: 1rem;
+}
+
+main {
+	width: 70%;
+	margin: 0 auto;
+
+	max-width: 1340px;
+}
+
+first-place {
+	display: flex;
+
+	flex-flow: row nowrap;
+
+	margin-bottom: 30px;
+	padding: 24px;
+
+	border-radius: 6px;
+
+	/*background-color: steelblue;*/
+	border: 1px solid lightgray;
+}
+
+first-place .left,
+first-place .right {
+	width: 100%;
+}
+
+first-place .left {
+	display: flex;
+
+	flex-flow: column nowrap;
+}
+
+first-place .right {
+	display: flex;
+
+	flex-flow: column nowrap;
+
+	align-items: flex-end;
+}
+
+#fp-name {
+	margin-bottom: 12px;
+}
+
+#fp-steps {
+	margin-bottom: 6px;
+}
+
+#fp-extra {
+	margin-bottom: 4px;
+}
+
+#progress-text {
+	margin-bottom: 6px;
+}
+
+#challenge-progress {
+	margin-bottom: 6px;
+}
+
+challenge-info span {
+	margin: 0;
+}
+
+challenge-info {
+	display: flex;
+
+	align-items: center;
+
+	height: 45px;
+
+	margin-bottom: 30px;
+	padding-left: 24px;
+
+	border: 1px solid lightgray;
+}
+
+.section-header {
+	margin-bottom: 24px;
+}
+
+#recent-entries .section-header {
+	display: flex;
+
+	flex-flow: row nowrap;
+	justify-content: space-between;
+}
+
+table {
+	width: 100%;
+	/*text-align: center;*/
+	border-collapse: collapse;
+}
+
+th {
+	padding-left: 8px;
+	text-align: left;
+}
+
+td {
+	border-top: 1px solid lightgray;
+	border-bottom: 1px solid lightgray;
+	padding: 12px 0 12px 8px;
+}
+
+section {
+	margin-top: 50px;
+}
+
+
+@media (max-width: 748px) {
+	body {
+		padding-top: 20px;
+	}
+	main {
+		width: 90%;
+	}
+}

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sw</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+
+	<base href="/">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="static/form.css">
+</head>
+<body>
+
+	<span class="lg">Submit a new activity</span>
+
+	<form action="/submit_activity" method="POST" enctype="multipart/form-data">
+		<label class="sm">
+			{% if errors %}
+			{% for error_msg in errors["step_count"] %}
+				<p class="error">{{ error_msg }}</p>
+			{% endfor %}
+			{% endif %}
+			Step count
+			<input type="number" min=0 name="step_count" required {% if step_count %} value={{ step_count }} {% endif %}>
+		</label>
+		<label class="sm">
+			{% if errors %}
+			{% for error_msg in errors["duration"] %}
+				<p class="error">{{ error_msg }}</p>
+			{% endfor %}
+			{% endif %}
+			Duration (minutes, rounded)
+			<input type="number" min=1 name="duration" required {% if duration %} value={{ duration }} {% endif %}>
+		</label>
+		<label class="sm">
+			{% if errors %}
+			{% for error_msg in errors["proof_file"] %}
+				<p class="error">{{ error_msg }}</p>
+			{% endfor %}
+			{% endif %}
+			Proof (screenshot of a fitness app)
+			<input
+				type="file"
+				accept="image/png, image/jpeg"
+				name="proof_file"
+				required
+			>
+		</label>
+
+		<button>Submit</button>
+	</form>
+
+</body>
+</html>

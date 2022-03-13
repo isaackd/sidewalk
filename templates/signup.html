@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sw</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+
+	<base href="/">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="static/form.css">
+</head>
+<body>
+
+	<span class="lg">Sign Up</span>
+
+	<form action="/signup" method="POST">
+		<label class="sm">
+			Username
+			{% if errors %}
+			{% for error_msg in errors["username"] %}
+			<p class="error">{{ error_msg }}</p>
+			{% endfor %}
+			{% endif %}
+			<input type="text" minlength=3 name="username" required {% if username %} value={{ username }} {% endif %} autocomplete="off">
+		</label>
+		<label class="sm">
+			Password
+			{% if errors %}
+			{% for error_msg in errors["password"] %}
+			<p class="error">{{ error_msg }}</p>
+			{% endfor %}
+			{% endif %}
+			<input type="password" minlength=8 name="password" required autocomplete="off">
+		</label>
+		<label class="sm">
+			Access Code
+			{% if errors %}
+			{% for error_msg in errors["access_code"] %}
+			<p class="error">{{ error_msg }}</p>
+			{% endfor %}
+			{% endif %}
+			<input type="text" name="access_code" required autocomplete="off">
+		</label>
+		<button>Sign Up</button>
+	</form>
+
+	<p>Already have an account? <a href="/login">Login here</a>!</p>
+
+</body>
+</html>

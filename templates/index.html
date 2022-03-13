@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>sw</title>
+
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta name="robots" content="noindex">
+
+	<base href="/">
+	<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="static/index.css">
+</head>
+<body>
+
+	<main>
+
+		{% if current_user.is_authenticated %}
+
+		<p>{{ current_user.username }} | <a href="/logout">Log out</a></p>
+
+		{% endif %}
+
+		{% if leaderboard[0] %}
+
+		<first-place>
+
+			<div class="left">
+				<span id="fp-name" class="lg">#1 {{ leaderboard[0][0] }}</span>
+				<span id="fp-steps" class="md">{{ localize_number(leaderboard[0][1]) }} steps</span>
+				<span id="fp-extra" class="sm">{{ convert_seconds(leaderboard[0][2] * 60) }} active</span>
+			</div>
+
+			<div class="right">
+				<span id="progress-text" class="md">{{ days_left }} days left</span>
+				<progress 
+					id="challenge-progress"
+					value={{ 7 - days_left }}
+					max="7" id="challenge-progress">
+				</progress>
+
+				<!-- <span id="user-history" class="sm">{{ leaderboard[0][0] }}'s History</span> -->
+			</div>
+		</first-place>
+
+		{% endif %}
+
+		{% if avg_steps_to_overtake and avg_steps_to_overtake > 0 %}
+
+		<challenge-info>
+			<span class="sm">You need to average <b>{{ avg_steps_to_overtake }} steps a day</b> in order to catch second place!</span>
+		</challenge-info>
+
+		{% endif %}
+
+		<section id="leaderboard">
+			<div class="section-header">
+				<span class="md">Leaderboard</span>
+			</div>
+
+			{% if leaderboard %}
+
+			<table>
+				<thead>
+					<tr>
+						<th>Position</th>
+						<th>Name</th>
+						<th>Total Steps</th>
+						<th>Total Duration</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for user in leaderboard %}
+
+					<tr>
+						<td>{{ loop.index }}</td>
+						<td class="user-name">{{ user[0] }}</td>
+						<td>{{ localize_number(user[1]) }}</td>
+						<td>{{ convert_seconds(user[2] * 60) }}</td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+
+			{% endif %}
+
+		</section>
+
+		<section id="recent-entries">
+			<div class="section-header">
+				<span class="md">All Entries</span>
+				<button onclick="window.location.href = 'submit_activity'">Submit</button>
+			</div>
+
+			{% if recent_activities %}
+
+			<table>
+				<thead>
+					<tr>
+						<th>Name</th>
+						<th>Steps</th>
+						<th>Duration</th>
+					</tr>
+				</thead>
+				<tbody>
+
+					{% for act in recent_activities %}
+
+					<tr>
+						<td class="user-name">{{ act[1] }}</td>
+						<td>{{ localize_number(act[2]) }}</td>
+						<td>{{ convert_seconds(act[3] * 60) }}</td>
+						<td><a href="/proof/{{ act[0] }}" target="_blank">Proof</a></td>
+					</tr>
+
+					{% endfor %}
+				</tbody>
+			</table>
+
+			{% endif %}
+
+		</section>
+	</main>
+
+
+
+</body>
+</html>
