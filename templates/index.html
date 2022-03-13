@@ -32,7 +32,7 @@
 			</div>
 
 			<div class="right">
-				<span id="progress-text" class="md">{{ days_left }} days left</span>
+				<span id="progress-text" class="md">{{ days_left }} {{ "days" if days_left != 1 else "day" }} left</span>
 				<progress 
 					id="challenge-progress"
 					value={{ 7 - days_left }}
